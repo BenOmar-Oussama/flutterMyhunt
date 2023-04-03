@@ -1,9 +1,5 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:myhuntmigration/EventTakePicture.dart';
-import 'package:myhuntmigration/pages/PhotographyView.dart';
-import 'package:myhuntmigration/pages/QRcodePage.dart';
-import 'package:path/path.dart';
 import 'Challenge.dart';
 
 Widget item(int index, double screenWidth, List<Challenge> challenges) {
@@ -30,10 +26,10 @@ Widget item(int index, double screenWidth, List<Challenge> challenges) {
               child: Center(
                   child: Text(
                 challenges[index].challengeIcon,
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               )),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Column(
@@ -71,7 +67,7 @@ Widget item(int index, double screenWidth, List<Challenge> challenges) {
                 color: Color.fromARGB(197, 61, 61, 61),
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               color: Color.fromARGB(87, 105, 105, 105),
             ),
@@ -98,14 +94,14 @@ Widget item2(int index, List<Challenge> challenges, BuildContext context) {
           child: Center(
               child: Text(
             challenges[index].challengeIcon,
-            style: TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 30),
           )),
         ),
       ),
     ),
     title: Text(challenges[index].getChallengeName),
     subtitle: Text(challenges[index].getEventName),
-    trailing: Icon(Icons.arrow_forward_ios),
+    trailing: const Icon(Icons.arrow_forward_ios),
     onTap: () {
       if (challenges[index].challengeIcon == "📸") {
         Navigator.of(context)
@@ -115,10 +111,10 @@ Widget item2(int index, List<Challenge> challenges, BuildContext context) {
           );
         }));
       } else {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return QRViewExample();
-        }));
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (BuildContext context) {
+        //   return QRViewExample();
+        // }));
       }
     },
   );

@@ -5,7 +5,6 @@ import 'package:myhuntmigration/helper/Colorsys.dart';
 import 'package:myhuntmigration/models/Post.dart';
 
 import 'CameraView.dart';
-import 'QRcodePage.dart';
 
 class UserSingle extends StatefulWidget {
   final Post post;
@@ -113,10 +112,10 @@ class _UserSingleState extends State<UserSingle> {
                                                         camera: value))));
                                   } else {
                                     //qr view
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                      return const QRViewExample();
-                                    }));
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (BuildContext context) {
+                                    //   return const QRViewExample();
+                                    // }));
                                   }
                                 },
                                 child: Container(

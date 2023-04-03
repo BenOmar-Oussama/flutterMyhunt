@@ -2,8 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myhuntmigration/data/Sample.dart';
-import 'package:myhuntmigration/pages/EventWidget.dart';
+import 'package:myhuntmigration/pages/PictureChallengePage.dart';
 import 'package:myhuntmigration/pages/HomePage.dart';
+import 'package:myhuntmigration/pages/QRChallengePage.dart';
 
 import 'helper/Colorsys.dart';
 
@@ -37,19 +38,19 @@ class _HomePageState extends State<HomePage> {
         //Check if remove later
         //extendBodyBehindAppBar: true,
         body: [
-            ChallengeView(Sample.postOne),
-            ChallengeView(Sample.postOne),
+            ChallengePage(post : Sample.postOne),
+            QRChallengePage(post : Sample.postOne),
           SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              LevelContainer(),          
+              LevelContainer(context),          
             ],
           ),
         ), 
-            ChallengeView(Sample.postOne),
-            ChallengeView(Sample.postOne),
+            ChallengePage(post : Sample.postOne),
+            ChallengePage(post : Sample.postOne),
         ][_page],
         
         extendBody: true,

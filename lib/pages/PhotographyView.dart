@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../helper/Colorsys.dart';
+
 class TakePictureScreen extends StatefulWidget {
   const TakePictureScreen({
     super.key,
@@ -49,23 +51,11 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.menu),
-        // leading: Icon(Icons.arrow_back_ios_new),
-        // backgroundColor: Color.fromARGB(0, 255, 255, 255),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          "Home Page",
-          style: TextStyle(color: Colors.black)
-        ),
-      ),
       // You must wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner until the
       // controller has finished initializing.
       body: Column(children: [
-        Container(
+        SizedBox(
           height: 550,
           width: 500,
           child: FutureBuilder<void>(
@@ -87,11 +77,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             Container(
               height: 50,
               width: 50,
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: const BorderRadius.all(Radius.circular(9.0))),
+              decoration:   const BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius: BorderRadius.all(Radius.circular(9.0))),
               child: IconButton(
                   iconSize: 30,
+                  color: Colorsys.graydark,
                   onPressed: () {
                     setState(() {
                       index = (~index) & 1;
@@ -104,23 +95,28 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                       _initializeControllerFuture = _controller.initialize();
                       
                     });
+                          debugPrint("flipflip");
+                    debugPrint("flipflip");
+                    debugPrint("flipflip");
+                    debugPrint("flipflip");
+                    debugPrint("flipflip");
 
                     debugPrint("flipflip");
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.flip_camera_ios_outlined,
-                    color: Colors.white,
+                    color: Colors.black,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               width: 50,
             ),
             Container(
               height: 50,
               width: 50,
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: const BorderRadius.all(Radius.circular(9.0))),
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 206, 10, 10),
+                  borderRadius: BorderRadius.all(Radius.circular(9.0))),
               child: IconButton(
                   iconSize: 30,
                   onPressed: () async {
@@ -151,7 +147,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                       print(e);
                     }
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.camera,
                     color: Colors.white,
                   )),

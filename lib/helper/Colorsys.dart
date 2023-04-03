@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Colorsys {
-  static Color purple = const Color(0xFF8a84e4);
+  static Color purple = const Color.fromARGB(255, 225, 148, 80);
   static Color grey = const Color.fromRGBO(112, 112, 112, 1);
   static Color grey300 = const Color.fromARGB(255, 224, 224, 224);
   static Color lightGrey = const Color.fromRGBO(238, 238, 238, 1);

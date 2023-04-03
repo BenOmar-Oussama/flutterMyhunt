@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myhuntmigration/data/Sample.dart';
+import 'package:myhuntmigration/pages/PictureChallengePage.dart';
+import 'package:myhuntmigration/pages/QRChallengePage.dart';
 
 import '../helper/Colorsys.dart';
 import '../models/Post.dart';
@@ -23,7 +25,7 @@ List<Post> posts = [
   Sample.postTwo,
 ];
 
-Widget LevelContainer() {
+Widget LevelContainer( BuildContext context) {
   return SafeArea(
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 00),
@@ -77,6 +79,21 @@ Widget LevelContainer() {
                       spreadRadius: 3,
                       blurRadius: 12,
                       offset: const Offset(0, 3))
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("myhuntmigration/assets/Icons.IconForLevelsOussama.png")
+                )
+                    ),
+
+                  )
                 ],
               ),
             ),
@@ -174,12 +191,12 @@ Widget LevelContainer() {
             transform: Matrix4.translationValues(0, -20, 0),
             child: Column(
               children: [
-                horizontalCard(Sample.postOne),
-                horizontalCard(Sample.postOne),
-                horizontalCard(Sample.postOne),
-                horizontalCard(Sample.postOne),
-                horizontalCard(Sample.postOne),
-                horizontalCard(Sample.postOne),
+                horizontalCard(Sample.postOne , context),
+                horizontalCard(Sample.postTwo  , context),
+                horizontalCard(Sample.post3 , context),
+                horizontalCard(Sample.post4 , context),
+                horizontalCard(Sample.post5 , context),
+                horizontalCard(Sample.post6 , context),
               ],
             ),
           ),
@@ -523,98 +540,113 @@ Widget filterBoxes(String text) {
   );
 }
 
-Widget horizontalCard(Post post) {
+Widget horizontalCard(Post post , BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     child: Stack(children: [
-      Container(
-        width: double.infinity,
-        height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-                color: Colorsys.black.withOpacity(0.1),
-                spreadRadius: 6,
-                blurRadius: 12,
-                offset: const Offset(0, 3))
-          ],
-        ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 5,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 90,
-                ),
-                Icon(
-                  Icons.timer,
-                  color: Colorsys.graydark,
-                  size: 18,
-                ),
-                Text(
-                  " ${post.deadline} left",
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                        fontSize: 10,
-                        color: Colorsys.graydark.withOpacity(0.5),
-                        fontWeight: FontWeight.bold),
+      GestureDetector(
+        onTap: () {
+                  Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          if(post.ChallengeType == Icons.qr_code_rounded)
+          {
+            return  QRChallengePage(post: post,);
+          }else
+          {
+            return ChallengePage(post: post);
+          }
+        }));
+        },
+        child: Container(
+          width: double.infinity,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  color: Colorsys.black.withOpacity(0.1),
+                  spreadRadius: 6,
+                  blurRadius: 12,
+                  offset: const Offset(0, 3))
+            ],
+          ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 90,
                   ),
-                ),
-                const Spacer(),
-                Text(
-                  "🌟" "${post.Points}",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        color: Colorsys.graydark,
-                        fontWeight: FontWeight.w600),
+                  Icon(
+                    Icons.timer,
+                    color: Colorsys.purple,
+                    size: 18,
                   ),
-                ),
-                const SizedBox(
-                  width: 8,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                const SizedBox(width: 95),
-                Text(
-                  post.EventName,
-                  //textAlign: TextAlign.start,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                        fontSize: 18,
-                        color: Colorsys.graydark.withOpacity(1),
-                        fontWeight: FontWeight.bold),
+                  Text(
+                    " ${post.deadline} left",
+                    style: GoogleFonts.inter(
+                      textStyle: TextStyle(
+                          fontSize: 10,
+                          color: Colorsys.graydark.withOpacity(0.5),
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const SizedBox(width: 95),
-                Text(
-                  post.EventName,
-                  //textAlign: TextAlign.start,
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                        fontSize: 12,
-                        color: Colorsys.graydark.withOpacity(0.7),
-                        fontWeight: FontWeight.w500),
+                  const Spacer(),
+                  Icon(Icons.star , size: 18 , color: Colorsys.purple,),
+                  Text(
+                    "${post.Points}",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                      textStyle: TextStyle(
+                          fontSize: 15,
+                          color: Colorsys.graydark,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(
+                    width: 8,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  const SizedBox(width: 95),
+                  Text(
+                    post.EventName,
+                    //textAlign: TextAlign.start,
+                    style: GoogleFonts.inter(
+                      textStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colorsys.graydark.withOpacity(1),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const SizedBox(width: 95),
+                  Text(
+                    post.EventName,
+                    //textAlign: TextAlign.start,
+                    style: GoogleFonts.inter(
+                      textStyle: TextStyle(
+                          fontSize: 12,
+                          color: Colorsys.graydark.withOpacity(0.7),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       Stack(alignment: Alignment.center, children: [
@@ -635,7 +667,7 @@ Widget horizontalCard(Post post) {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                  color: Colorsys.whitish.withOpacity(0.3),
+                  color: Colorsys.whitish.withOpacity(0.2),
                   spreadRadius: 7,
                   blurRadius: 14,
                   offset: const Offset(0, 5))
